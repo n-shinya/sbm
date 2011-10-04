@@ -1,0 +1,17 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+
+<ul>
+  <li><a href="${url}">${title}</a></li>
+<ul>
+#{form @Application.register(url, title, memo)}
+  <p>
+    <label for="memo">コメント:</label>
+    <textarea name="memo" rows="10" cols="30"></textarea>
+    <label for="memo">タグ:</label>
+    <input type="text" name="tagname" /> 
+  </p>
+  <input type="submit" value="ブックマーク！" />
+  
+#{/form}

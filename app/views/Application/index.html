@@ -1,0 +1,39 @@
+#{extends 'main.html' /}
+#{set title:'ソーシャルブックマーク - FLECT' /}
+
+<div id="contents">
+#{list items:indexView, as:'item'}
+  <div class="list">
+    <ul>
+      <div class="thumbnail">
+        <li>
+          <a href="${item.bookmark.url}" target="_blank">
+            <img src="http://capture.heartrails.com/150x150/border/round?${item.bookmark.url}">
+          </a>
+        </li>
+      </div>
+      <div class="detail">
+        <li>
+          <img src="@{'/public/images/n-shinya.jpg'}" width="48" height="48"/>
+        </li>
+        <li><a href="${item.bookmark.url}" target="_blank">${item.bookmark.title}</a></li>
+        <li>${item.registerDate}</li>
+        <li><span>${item.bookmark.tag.name}</span></li>
+        #{if item.bookmark.memo}
+        <div class="before-text">
+          <div class="before-text-in">
+          <li><p>${item.bookmark.memo}</p></li>
+          </div>
+        </div>
+        #{/if}
+        <!--
+        <li><a href="@{Application.delete(item.bookmark.id)}">削除</a></li>
+        -->
+      </div>
+    </ul>
+  </div>
+#{/list}
+</div>
+<div id="footer">
+  <p>Powered by Play on Heroku</p>
+</div>

@@ -1,0 +1,106 @@
+/* CSS reset */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td { 
+	margin:0;
+	padding:0;
+}
+
+body {
+	border-top: solid 4px #333;
+	font-size: 12px;
+	color: #333;
+	line-height: 1.5em;
+	font-family: "ÉqÉâÉMÉmñæí© Pro W3", "Hiragino Mincho Pro", "ÉÅÉCÉäÉI", Meiryo, "ÇlÇr ÇoÉSÉVÉbÉN", sans-serif;
+}
+
+li {
+	list-style-type: none;
+}
+
+h1#logo {
+	margin: 0px 0 20px 10px;
+	height: 30px;
+}
+
+h2#hello {
+	margin: 15px 0 5px 10px;
+	padding-bottom: 10px;
+	border-bottom: double 1px #111111;
+}
+
+.list {
+	margin-left: 15px;
+	border-bottom: solid 1px #FFD0DF;
+	height: 185px;
+}
+
+#contents ul{
+	width: 900px;
+	height: 0px;
+	clear: left;
+}
+
+#contents ul li img {
+	margin: 15px 0 20px 20px;
+	float: left;
+}
+
+.detail {
+	margin-left: 175px;
+	position: relative;
+	top: 18px;
+	left: 20px;
+}
+
+.detail li img{
+	position: relative;
+	top: -15px;
+	left: -20px;
+}
+
+.detail li a{
+	font-size: 16px;
+}
+
+.detail li span{
+	font-size: 10px;
+	color: #f00;
+	border: 2px solid;
+	padding: 2px;
+	border-color: #f00;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+#footer p {
+	color: #fff;
+	background-color: #333;
+	text-align: center;
+}
+
+.before-text{
+	float: left;
+	border-left: 10px solid #ccddff;
+	border-top: 10px solid transparent;
+	margin:10px;
+	position: relative;
+	left: -70px;
+}
+
+.before-text-in{
+	float: left;
+	margin-left: -20px;
+	background: #ccddff;
+	color: 333;
+
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+
+	line-height:140%;
+	padding:20px;
+	
+	position: relative;
+	left: -5px;
+	
+}
