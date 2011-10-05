@@ -1,17 +1,35 @@
 #{extends 'main.html' /}
 #{set title:'Home' /}
-
-
-<ul>
-  <li><a href="${url}">${title}</a></li>
-<ul>
+#{set 'moreStyles'}
+  #{stylesheet 'clip.css' /}
+#{/set}
+<h3>ブックマーク登録</h3>
+<div id="contents">
+  <a href="${url}">${title}</a>
 #{form @Application.register(url, title, memo)}
-  <p>
-    <label for="memo">コメント:</label>
-    <textarea name="memo" rows="10" cols="30"></textarea>
-    <label for="memo">タグ:</label>
-    <input type="text" name="tagname" /> 
-  </p>
-  <input type="submit" value="ブックマーク！" />
-  
+  <ul>
+    <li>
+      <dd>コメント</dd>
+      <dt><textarea name="memo" rows="10" cols="100"></textarea></dt>
+    </li>
+    <li>
+      <dd>タグ</dd>
+      <dt><input type="text" name="tagname" /></dt>
+    </li>
+    <li>
+      <dd>公開設定</dd>
+      <dt>
+        <input type="radio" name="publicity" id="r1" checked/>
+        <label for="r1">公開する</label>
+        <input type="radio" name="publicity" id="r2" />
+        <label for="r2">公開しない</label>
+      </dt>
+    </li>
+    <li>
+      <input type="submit" value="ブックマーク！" />
+    </li>
+
+  </ul>
 #{/form}
+</form>
+</div>

@@ -13,8 +13,8 @@ public class IndexViewHelper {
 		return new SimpleDateFormat("yyyy年MM月dd日").format(date);
 	}
 	
-	public static List<IndexView> create() {
-		List<Bookmark> bookmarks = Bookmark.all().fetch();
+	public static List<IndexView> create(int pagenum) {
+		List<Bookmark> bookmarks = Bookmark.all().from((pagenum -1) * 10).fetch(10);
 		List<IndexView> list = new ArrayList<IndexView>();
 		for(Bookmark bookmark : bookmarks) {
 			IndexView view = new IndexView();

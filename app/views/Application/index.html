@@ -1,6 +1,9 @@
 #{extends 'main.html' /}
 #{set title:'ソーシャルブックマーク - FLECT' /}
-
+#{set 'moreStyles'}
+  #{stylesheet 'index.css' /}
+#{/set}
+<h3>ブックマーク一覧(${count})</h3>
 <div id="contents">
 #{list items:indexView, as:'item'}
   <div class="list">
@@ -18,7 +21,9 @@
         </li>
         <li><a href="${item.bookmark.url}" target="_blank">${item.bookmark.title}</a></li>
         <li>${item.registerDate}</li>
-        <li><span>${item.bookmark.tag.name}</span></li>
+        #{if item.bookmark.tag.name}
+          <li><span>${item.bookmark.tag.name}</span></li>
+        #{/if}
         #{if item.bookmark.memo}
         <div class="before-text">
           <div class="before-text-in">

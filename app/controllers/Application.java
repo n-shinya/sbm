@@ -21,8 +21,9 @@ public class Application extends Controller {
 	}
 	
 	public static void index() {
-		List<IndexView> indexView = IndexViewHelper.create();
-		render(indexView);
+		List<IndexView> indexView = IndexViewHelper.create(1);
+		long count = Bookmark.count();
+		render(indexView, count);
 	}
 	
 	public static void clip(String url, String title) {
