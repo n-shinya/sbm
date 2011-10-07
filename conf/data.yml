@@ -2,6 +2,9 @@
 User(u1):
   name: n-shinya
 
+User(u2):
+  name: s-jobs
+
 Tag(t1):
   name: 会社
 
@@ -11,8 +14,8 @@ Tag(t2):
 Bookmark(b1):
   url: http://www.flect.co.jp
   title: 株式会社フレクト
-  memo: これはいいよ
-  users: u1
+  memo: これはいいぜ
+  user: u1
   tag: t1
   date: 2011-10-03
     
@@ -20,6 +23,15 @@ Bookmark(b2):
   url: http://www.google.com
   title: Google
   memo: 検索サイト
-  users: u1
+  user: u1
   tag: t2
   date: 2011-10-04
+
+Bookmark(b3):
+  url: http://www.apple.com
+  title: Apple
+  memo: アップル公式
+  user: u2
+  tag: t1
+  date: 2011-10-08
+  

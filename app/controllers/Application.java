@@ -8,6 +8,7 @@ import java.util.List;
 
 import models.Bookmark;
 import models.Tag;
+import models.User;
 import play.mvc.Before;
 import play.mvc.Controller;
 
@@ -20,10 +21,21 @@ public class Application extends Controller {
 		renderArgs.put("userImage", "n-shinya");
 	}
 	
-	public static void index() {
-		List<IndexView> indexView = IndexViewHelper.create(1);
-		long count = Bookmark.count();
-		render(indexView, count);
+	public static void index(int page, String q, String username) {
+		if(page < 1) {
+			page = 1;
+		}
+		if(username == null) {
+			username = "all";
+		}
+		List<IndexView> indexView = IndexViewHelper.create(page, q, username);
+		long count = Bookmark.countByQuery(q, username);
+		List<User> users = User.findAll();
+		render(indexView, count, page, q, username, users);
+	}
+	
+	public static void search(String q, String username) {
+		index(1, q, username);
 	}
 	
 	public static void clip(String url, String title) {
@@ -40,15 +52,14 @@ public class Application extends Controller {
 		bookmark.memo = memo;
 		bookmark.date = new Date();
 		bookmark.tag = tag;
+		bookmark.user = User.findByName("n-shinya");
 		bookmark.save();
-		index();
+		index(1, null, null);
 	}
 	
 	public static void delete(Long id) {
 		Bookmark bookmark = Bookmark.findById(id);
 		bookmark.delete();
-		index();
+		index(1, null, null);
 	}
-	
-	
 }

@@ -1,11 +1,44 @@
-h3 {
-	margin: 10px 5px 0 10px;
-	padding-bottom: 10px; 
-	font-size: 20px;
+#header {
+	padding-bottom: 15px;
 	border-bottom: solid 1px #FFD0DF;
 }
 
-.list {
+#header h3 {
+	margin: 10px 5px 0 10px;
+	padding-bottom: 10px; 
+	font-size: 20px;
+	float: left;
+}
+
+#header a {
+	margin: 10px 0 0 10px;
+	float: left;
+	font-size: 14px;
+}
+
+#header p {
+	margin: 10px 0 0 10px;
+	color: #999;
+	font-size: 14px;
+	float: left;
+}
+
+#header select {
+	margin: 10px 0 0 20px;
+	float: left;
+}
+
+#header input[type="text"] {
+	margin: 10px 0 0 10px;
+	float: left;
+}
+
+#header input[type="submit"] {
+	margin: 9px 0 0 5px;
+	clear: left;
+}
+
+#contents .list {
 	margin-left: 15px;
 	border-bottom: solid 1px #FFD0DF;
 	height: 185px;
@@ -22,24 +55,24 @@ h3 {
 	float: left;
 }
 
-.detail {
+#contents .detail {
 	margin-left: 175px;
 	position: relative;
 	top: 18px;
 	left: 20px;
 }
 
-.detail li img{
+#contents .detail li img{
 	position: relative;
 	top: -15px;
 	left: -20px;
 }
 
-.detail li a{
+#contents .detail li a{
 	font-size: 16px;
 }
 
-.detail li span{
+#contents .detail li span{
 	font-size: 10px;
 	color: #f00;
 	border: 2px solid;
@@ -50,13 +83,7 @@ h3 {
 	-webkit-border-radius: 5px;
 }
 
-#footer p {
-	color: #fff;
-	background-color: #333;
-	text-align: center;
-}
-
-.before-text{
+#contents .before-text{
 	float: left;
 	border-left: 10px solid #ccddff;
 	border-top: 10px solid transparent;
@@ -65,7 +92,7 @@ h3 {
 	left: -70px;
 }
 
-.before-text-in{
+#contents .before-text-in{
 	float: left;
 	margin-left: -20px;
 	background: #ccddff;
@@ -80,4 +107,10 @@ h3 {
 	
 	position: relative;
 	left: -5px;
+}
+
+#footer p {
+	color: #fff;
+	background-color: #333;
+	text-align: center;
 }
