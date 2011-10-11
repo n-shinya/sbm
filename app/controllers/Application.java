@@ -23,7 +23,6 @@ public class Application extends Controller {
 	}
 	
 	public static void index(int page, String q, String username) {
-		Bookmark.deleteAll();
 		if(page < 1) {
 			page = 1;
 		}
