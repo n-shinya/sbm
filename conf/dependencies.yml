@@ -1,0 +1,4 @@
+# Application dependencies
+
+require:
+    - play -> mongo 1.3

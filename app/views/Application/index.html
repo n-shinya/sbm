@@ -1,0 +1,91 @@
+#{extends 'main.html' /}
+#{set title:'ソーシャルブックマーク - FLECT' /}
+#{set 'moreStyles'}
+  #{stylesheet 'index.css' /}
+#{/set}
+<div id="header">
+#{if username == "all"}
+  <h3>みんなのブックマーク一覧(${count})</h3>
+#{/if}
+#{else}
+  <h3>${username}さんのブックマーク一覧(${count})</h3>
+#{/else}
+  #{if count > 10}
+    #{if page != 1}
+        %{num = page - 1}%
+        <a href="@{Application.index(num, q)}">前へ</a>
+    #{/if}
+    #{else}
+        <p>前へ</p>
+    #{/else}
+    
+    #{if page * 10 < count}
+        %{num = page + 1}%
+        <a href="@{Application.index(num, q)}">次へ</a>
+    #{/if}
+    #{else}
+        <p>次へ</p>
+    #{/else}
+  #{/if}
+  #{form @Application.search()}
+  <select name="username" id="users">
+    <option value="all">すべてのユーザ</option>
+    #{list users, as:'u'}
+      #{if username == u.name}
+        <option value="${u.name}" selected>${u.name}</option>
+      #{/if}
+      #{else}
+        <option value="${u.name}">${u.name}</option>
+      #{/else}
+    #{/list}
+  </select>
+    <input type="text" name="q" value="${q}"/>
+    <input type="submit" value="検索">
+  #{/form}
+</div>
+<div id="contents">
+#{list items:indexView, as:'item'}
+  <div class="list">
+    <ul>
+      <div class="thumbnail">
+        <li>
+          <a href="${item.bookmark.url}" target="_blank">
+            <img src="http://capture.heartrails.com/150x150/border/round?${item.bookmark.url}">
+          </a>
+        </li>
+      </div>
+      <div class="detail">
+        <li>
+          <img src="/public/images/${item.bookmark.account.name}.jpg" width="48" height="48"/>
+        </li>
+        <li><a href="${item.bookmark.url}" target="_blank">${item.bookmark.title}</a></li>
+        <li>${item.registerDate}</li>
+        #{if item.bookmark.tag.name}
+          <li><span>${item.bookmark.tag.name}</span></li>
+        #{/if}
+        #{if item.bookmark.memo}
+        <div class="before-text">
+          <div class="before-text-in">
+          <li><p>${item.bookmark.memo}</p></li>
+          </div>
+        </div>
+        #{/if}
+        <!--
+        <li><a href="@{Application.delete(item.bookmark.id)}">削除</a></li>
+        -->
+      </div>
+    </ul>
+  </div>
+#{/list}
+</div>
+<div id="footer">
+  <p>Powered by Play on Heroku</p>
+</div>
+<script type="text/javascript">
+  $(function() {
+    $('#users').bind('change', function() {
+      var name = $('#users option:selected').val();
+      location.href = "/?username="+name;
+    });
+  });
+</script>

@@ -1,0 +1,40 @@
+19:16:01,789 INFO  ~ Starting C:\Users\Louth\Documents\projects\play-mongo-test
+19:16:01,799 INFO  ~ Module mongo is available (C:\Users\Louth\Documents\projects\play-mongo-test\..\play-mongo)
+19:16:03,234 WARN  ~ You're running Play! in DEV mode
+~
+~ Go to http://localhost:9000/@tests to run the tests
+~
+19:16:03,493 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+19:16:05,504 DEBUG ~ using collectionName "car"
+19:16:05,504 DEBUG ~ play.modules.mongo.MongoEnhancer-->enhancing MongoEntity-->models.Car-->collection-->"car"
+19:16:06,896 INFO  ~ Connected to jdbc:hsqldb:mem:playembed
+19:16:06,914 INFO  ~ Application 'mongo-test' is now started !
+19:16:09,915 INFO  ~ initializing DB [localhost][27017][play]
+19:16:12,995 ERROR ~ 
+java.io.IOException: An existing connection was forcibly closed by the remote host
+	at sun.nio.ch.SocketDispatcher.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:25)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:237)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:204)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:236)
+	at org.jboss.netty.channel.socket.nio.NioWorker.read(NioWorker.java:322)
+	at org.jboss.netty.channel.socket.nio.NioWorker.processSelectedKeys(NioWorker.java:281)
+	at org.jboss.netty.channel.socket.nio.NioWorker.run(NioWorker.java:201)
+	at org.jboss.netty.util.internal.IoWorkerRunnable.run(IoWorkerRunnable.java:46)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:619)
+19:16:12,998 ERROR ~ 
+java.io.IOException: An existing connection was forcibly closed by the remote host
+	at sun.nio.ch.SocketDispatcher.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:25)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:237)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:204)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:236)
+	at org.jboss.netty.channel.socket.nio.NioWorker.read(NioWorker.java:322)
+	at org.jboss.netty.channel.socket.nio.NioWorker.processSelectedKeys(NioWorker.java:281)
+	at org.jboss.netty.channel.socket.nio.NioWorker.run(NioWorker.java:201)
+	at org.jboss.netty.util.internal.IoWorkerRunnable.run(IoWorkerRunnable.java:46)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:619)

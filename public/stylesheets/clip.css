@@ -1,0 +1,43 @@
+h3 {
+	margin: 10px 5px 0 10px;
+	padding-bottom: 10px; 
+	font-size: 20px;
+	border-bottom: solid 1px #FFD0DF;
+}
+
+#contents {
+	position:absolute;
+	top:30%;
+	left:50%;
+	width:780px;
+	height:340px;
+	margin:15px 0 0 -420px;
+	padding:30px;
+	border: 10px groove;
+}
+
+#contents a {
+	font-size: 16px;
+}
+
+#contents li {
+	padding: 5px;
+}
+
+#contents dd {
+	padding-bottom: 5px;
+	font-size: 14px;
+}
+
+#contents textarea {
+	padding: 3px;
+}
+
+#contents input[type="submit"] {
+	padding: 3px;
+	margin-left: 340px;
+}
+
+#contents textbox {
+	padding: 1px;
+}
