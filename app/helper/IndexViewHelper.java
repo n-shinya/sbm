@@ -5,7 +5,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
+
 import models.Bookmark;
+import models.Freeword;
 
 public class IndexViewHelper {
 	
@@ -15,14 +18,12 @@ public class IndexViewHelper {
 	
 	public static List<IndexView> create(int page, String q, String username) {
 		
-		if(username.equals("all")) {
-			
+		List<Bookmark> bookmarks;
+		if(q == null || q.equals("")) {
+			bookmarks = Bookmark.findByUsername(page, username);
+		} else {
+			bookmarks = Bookmark.findByUsernameAndIds(page, username, Freeword.findByTerms(q));
 		}
-	
-		List<Bookmark> bookmarks = q == null ?
-					Bookmark.findByUsername(page, username)
-					: Bookmark.findByUsernameAndTitle(page, username, q);
-		
 		List<IndexView> list = new ArrayList<IndexView>();
 		for(Bookmark bookmark : bookmarks) {
 			IndexView view = new IndexView();

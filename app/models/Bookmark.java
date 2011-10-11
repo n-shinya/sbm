@@ -1,5 +1,6 @@
 package models;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -36,27 +37,34 @@ public class Bookmark extends Model {
 		}
 	}
 	
-	public static List<Bookmark> findByUsernameAndTitle(int page, String name, String title) {
+	public static List<Bookmark> findByUsernameAndIds(int page, String name, List<Long> ids) {
+		if(ids.isEmpty()) {
+			return new ArrayList<Bookmark>();
+		}
 		if(name.equals("all")) {
-			return find("select b from Bookmark b where b.title like ? order by date desc", "%" + title + "%")
+			return find("select b from Bookmark b where b.id in (?1) order by date desc", ids)
 			.from((page -1) * 10)
 			.fetch(10);
 		} else {
-			return find("select b from Bookmark b join b.account as u where u.name=? and b.title like ?  order by date desc", name, "%" + title + "%")
+			return find("select b from Bookmark b join b.account as u where u.name=? and b.id in (?2) order by date desc", name, ids)
 			.from((page -1) * 10)
 			.fetch(10);			
 		}
 	}
-	
-	public static long countByQuery(String q, String name) {
+
+	public static long countByUser(String name) {
 		if(name.equals("all")) {
-			return q == null ?
-					count()
-					: count("byTitleElike", "%" + q + "%");
+			return count();
 		} else {
-			return q == null ?
-					count("select count(*) from Bookmark b join b.account as u where u.name=?", name)
-					: count("select count(*) from Bookmark b join b.account as u where b.title like ? and u.name=?", "%" + q + "%", name);
+			return count("select count(*) from Bookmark b join b.account as u where u.name=?", name);
 		}
-	}	
+	}
+	
+	public static long countByIdsAndUser(List<Long> ids, String name) {
+		if(name.equals("all")) {
+			return count("select count(*) from Bookmark b where b.id in (?1)", ids);
+		} else {
+			return count("select count(*) from Bookmark b join b.account as u where b.id in (?1) and u.name=?2", ids, name);
+		}
+	}
 }
