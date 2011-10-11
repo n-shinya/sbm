@@ -8,7 +8,7 @@ import java.util.List;
 
 import models.Bookmark;
 import models.Tag;
-import models.User;
+import models.Account;
 import play.mvc.Before;
 import play.mvc.Controller;
 
@@ -30,7 +30,7 @@ public class Application extends Controller {
 		}
 		List<IndexView> indexView = IndexViewHelper.create(page, q, username);
 		long count = Bookmark.countByQuery(q, username);
-		List<User> users = User.findAll();
+		List<Account> users = Account.findAll();
 		render(indexView, count, page, q, username, users);
 	}
 	
@@ -52,7 +52,7 @@ public class Application extends Controller {
 		bookmark.memo = memo;
 		bookmark.date = new Date();
 		bookmark.tag = tag;
-		bookmark.user = User.findByName("n-shinya");
+		bookmark.account = Account.findByName("n-shinya");
 		bookmark.save();
 		index(1, null, null);
 	}
@@ -61,5 +61,13 @@ public class Application extends Controller {
 		Bookmark bookmark = Bookmark.findById(id);
 		bookmark.delete();
 		index(1, null, null);
+	}
+	
+	// TODO
+	public static void deleteAll() {
+		List<Bookmark> b = Bookmark.findAll();
+		for(Bookmark bb : b) {
+			bb.delete();
+		}
 	}
 }

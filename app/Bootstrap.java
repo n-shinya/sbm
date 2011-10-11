@@ -1,4 +1,4 @@
-import models.User;
+import models.Account;
 import play.jobs.Job;
 import play.jobs.OnApplicationStart;
 import play.test.Fixtures;
@@ -8,7 +8,7 @@ public class Bootstrap extends Job {
 	
 	@Override
 	public void doJob() {
-		if(User.count() == 0) {
+		if(Account.count() == 0) {
 			Fixtures.loadModels("data.yml");
 		}
 	}
