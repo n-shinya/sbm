@@ -22,10 +22,23 @@ public class Freeword extends MongoModel{
 	
 	public Freeword(Bookmark bookmark) {
 		this.bookmarkId = bookmark.id;
-		this.terms = bookmark.title + " " + bookmark.tag.name + " " + bookmark.memo;
+		StringBuilder sb = new StringBuilder();
+		if(bookmark.title != null) {
+			sb.append(bookmark.title.toLowerCase());
+			sb.append(' ');
+		}
+		if(bookmark.tag.name != null) {
+			sb.append(bookmark.tag.name.toLowerCase());
+			sb.append(' ');
+		}
+		if(bookmark.memo != null) {
+			sb.append(bookmark.memo.toLowerCase());
+		}
+		this.terms = sb.toString();
 	}
 	
 	public static List<Long> findByTerms(String terms) {
+		terms = terms.toLowerCase();
 		DBCollection coll = MongoDB.db().getCollection("freeword");
 		Pattern pattern = Pattern.compile(".*" + terms + ".*");
 		DBCursor cursor = coll.find(new BasicDBObject("terms", pattern));
