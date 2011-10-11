@@ -8,7 +8,8 @@ public class Bootstrap extends Job {
 	
 	@Override
 	public void doJob() {
-		Account.deleteAll();
-		Fixtures.loadModels("data.yml");
+		if(Account.count() == 0) {
+			Fixtures.loadModels("data.yml");
+		}
 	}
 }
