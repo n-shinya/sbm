@@ -3,35 +3,4 @@ Account(u1):
   name: n-shinya
 
 Account(u2):
-  name: s-jobs
-
-Tag(t1):
-  name: 会社
-
-Tag(t2):
-  name: search
-
-Bookmark(b1):
-  url: http://www.flect.co.jp
-  title: 株式会社フレクト
-  memo: これはいいぜ
-  account: u1
-  tag: t1
-  date: 2011-10-03
-    
-Bookmark(b2):
-  url: http://www.google.com
-  title: Google
-  memo: 検索サイト
-  account: u1
-  tag: t2
-  date: 2011-10-04
-
-Bookmark(b3):
-  url: http://www.apple.com
-  title: Apple
-  memo: アップル公式
-  account: u2
-  tag: t1
-  date: 2011-10-08
-  
+  name: f-taro

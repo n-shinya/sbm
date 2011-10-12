@@ -23,7 +23,6 @@ public class Application extends Controller {
 	}
 	
 	public static void index(int page, String q, String username) {
-		
 		if(page < 1) {
 			page = 1;
 		}
@@ -75,13 +74,5 @@ public class Application extends Controller {
 		Bookmark bookmark = Bookmark.findById(id);
 		bookmark.delete();
 		index(1, null, null);
-	}
-	
-	// TODO
-	public static void deleteAll() {
-		List<Bookmark> b = Bookmark.findAll();
-		for(Bookmark bb : b) {
-			bb.delete();
-		}
-	}
+	}	
 }
