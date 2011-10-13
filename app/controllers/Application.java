@@ -10,6 +10,7 @@ import models.Account;
 import models.Bookmark;
 import models.Freeword;
 import models.Tag;
+import models.Tag.Tagcloud;
 import play.mvc.Before;
 import play.mvc.Controller;
 
@@ -32,7 +33,8 @@ public class Application extends Controller {
 		List<IndexView> indexView = IndexViewHelper.create(page, q, username);
 		long count = IndexViewHelper.count(q, username);
 		List<Account> users = Account.findAll();
-		render(indexView, count, page, q, username, users);
+		Tagcloud cloud = Tag.findByUsername(username);
+		render(indexView, count, page, q, username, users, cloud);
 	}
 	
 	public static void search(String q, String username) {

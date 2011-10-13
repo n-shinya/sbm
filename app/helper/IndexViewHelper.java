@@ -9,6 +9,7 @@ import org.apache.commons.lang.StringUtils;
 
 import models.Bookmark;
 import models.Freeword;
+import models.Tag;
 
 public class IndexViewHelper {
 	
