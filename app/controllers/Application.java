@@ -30,18 +30,7 @@ public class Application extends Controller {
 			username = "all";
 		}
 		List<IndexView> indexView = IndexViewHelper.create(page, q, username);
-		long count;
-		if(q == null || q.equals("")) {
-			count = Bookmark.countByUser(username);
-		} else {
-			List<Long> ids = Freeword.findByTerms(q);
-			if(ids.isEmpty()) {
-				count = 0;
-			} else {
-				count = Bookmark.countByIdsAndUser(ids, username);
-			}
-		}
-		
+		long count = IndexViewHelper.count(q, username);
 		List<Account> users = Account.findAll();
 		render(indexView, count, page, q, username, users);
 	}
@@ -67,7 +56,7 @@ public class Application extends Controller {
 		bookmark.account = Account.findByName("n-shinya");
 		bookmark.save();
 		new Freeword(bookmark).save();
-		index(1, null, null);
+		redirect(url);
 	}
 	
 	public static void delete(Long id) {

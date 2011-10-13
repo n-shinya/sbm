@@ -34,6 +34,19 @@ public class IndexViewHelper {
 		return list;
 	}
 	
+	public static long count(String q, String username) {
+		if(q == null || q.equals("")) {
+			return Bookmark.countByUser(username);
+		} else {
+			List<Long> ids = Freeword.findByTerms(q);
+			if(ids.isEmpty()) {
+				return 0L;
+			} else {
+				return Bookmark.countByIdsAndUser(ids, username);
+			}
+		}
+	}
+	
 	public static class IndexView {
 		public Bookmark bookmark;
 		public String registerDate;
