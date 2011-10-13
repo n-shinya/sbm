@@ -9,6 +9,7 @@ import org.apache.commons.lang.StringUtils;
 
 import models.Bookmark;
 import models.Freeword;
+import models.Tag;
 
 public class IndexViewHelper {
 	
@@ -32,6 +33,19 @@ public class IndexViewHelper {
 			list.add(view);
 		}
 		return list;
+	}
+	
+	public static long count(String q, String username) {
+		if(q == null || q.equals("")) {
+			return Bookmark.countByUser(username);
+		} else {
+			List<Long> ids = Freeword.findByTerms(q);
+			if(ids.isEmpty()) {
+				return 0L;
+			} else {
+				return Bookmark.countByIdsAndUser(ids, username);
+			}
+		}
 	}
 	
 	public static class IndexView {

@@ -3,6 +3,22 @@
 #{set 'moreStyles'}
   #{stylesheet 'index.css' /}
 #{/set}
+
+<div id="tagcloud">
+#{if username == "all"}
+  <h3>みんなの興味</h3>
+#{/if}
+#{else}
+  <h3>${username}さんの興味</h3>
+#{/else}
+  <ul>
+  #{list items:cloud.tagMap.entrySet(), as:'entry'}
+    <li class="tag${entry.getValue()}">
+      <a href="/?username=${username}&q=${entry.getKey()}">${entry.getKey()}</a>
+    </li> 
+  #{/list}
+  </ul>
+</div>
 <div id="header">
 #{if username == "all"}
   <h3>みんなのブックマーク一覧(${count})</h3>
