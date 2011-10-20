@@ -1,7 +1,9 @@
+/target
 /eclipse
 /modules
 /tmp
 /.settings
+/test-result
 .project
 .classpath
 .DS_Store
