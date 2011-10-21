@@ -7,9 +7,23 @@ import play.db.jpa.Model;
 @Entity
 public class Account extends Model {
 
-	public String name;
+	public String userId;
 	
-	public static Account findByName(String name) {
-		return find("byName", name).first();
+	public String displayName;
+	
+	public String thumbnail;
+	
+	public static Account userId(String userId) {
+		return find("byUserId", userId).first();
+	}
+	
+	public static boolean exist(String userId) {
+		return count("byUserId", userId) > 0;
+	}
+	
+	public Account(String userId, String displayName, String thumbnail) {
+		this.userId = userId;
+		this.displayName = displayName;
+		this.thumbnail = thumbnail;
 	}
 }
