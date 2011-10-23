@@ -2,12 +2,20 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-*      /admin              module:crud
+# Import Secure routes
+*       /                                       module:secure
 
 # Home page
-GET     /                                       Application.index
+GET     /login                                  OAuthSecure.login
+GET     /authenticate                           OAuthSecure.authenticate
+GET     /logout                                 OAuthSecure.logout
+POST    /search/{userId}                        Application.search
 GET     /clip                                   Application.clip
+POST    /register                               Application.register
 GET     /delete                                 Application.delete
+GET     /{userId}/{page}                        Application.index
+GET     /{userId}                               Application.index
+GET     /                                       Application.index
 
 # Ignore favicon requests
 GET     /favicon.ico                            404
@@ -15,5 +23,3 @@ GET     /favicon.ico                            404
 # Map static resources from the /app/public folder to the /public path
 GET     /public/                                staticDir:public
 
-# Catch all
-*       /{controller}/{action}                  {controller}.{action}

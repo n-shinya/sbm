@@ -13,15 +13,15 @@ public class Tag extends Model{
 
 	public String name;
 	
-	public static Tagcloud findByUsername(String username) {
+	public static Tagcloud findByUserId(String userId) {
 		List<Object> tags;
-		if(username.equals("all")) {
+		if(userId.equals("all")) {
 			tags =
 				find("select count(*), t.name from Tag t group by t.name")
 				.fetch();
 		} else {
 			tags = 
-				find("select count(*), t.name from Tag t, Bookmark b where t = b.tag and b.account.name=? group by t.name" , username)
+				find("select count(*), t.name from Tag t, Bookmark b where t = b.tag and b.account.userId=? group by t.name" , userId)
 				.fetch();
 		}
 		return toTagcloud(tags);

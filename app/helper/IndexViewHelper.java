@@ -17,13 +17,13 @@ public class IndexViewHelper {
 		return new SimpleDateFormat("yyyy年MM月dd日").format(date);
 	}
 	
-	public static List<IndexView> create(int page, String q, String username) {
+	public static List<IndexView> create(int page, String q, String userId) {
 		
 		List<Bookmark> bookmarks;
 		if(q == null || q.equals("")) {
-			bookmarks = Bookmark.findByUsername(page, username);
+			bookmarks = Bookmark.findByUserId(page, userId);
 		} else {
-			bookmarks = Bookmark.findByUsernameAndIds(page, username, Freeword.findByTerms(q));
+			bookmarks = Bookmark.findByUserIdAndIds(page, userId, Freeword.findByTerms(q));
 		}
 		List<IndexView> list = new ArrayList<IndexView>();
 		for(Bookmark bookmark : bookmarks) {
@@ -35,15 +35,15 @@ public class IndexViewHelper {
 		return list;
 	}
 	
-	public static long count(String q, String username) {
+	public static long count(String q, String userId) {
 		if(q == null || q.equals("")) {
-			return Bookmark.countByUser(username);
+			return Bookmark.countByUser(userId);
 		} else {
 			List<Long> ids = Freeword.findByTerms(q);
 			if(ids.isEmpty()) {
 				return 0L;
 			} else {
-				return Bookmark.countByIdsAndUser(ids, username);
+				return Bookmark.countByIdsAndUser(ids, userId);
 			}
 		}
 	}

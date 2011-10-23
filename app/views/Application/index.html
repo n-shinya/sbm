@@ -5,31 +5,31 @@
 #{/set}
 
 <div id="tagcloud">
-#{if username == "all"}
+#{if userId == "all"}
   <h3>みんなの興味</h3>
 #{/if}
 #{else}
-  <h3>${username}さんの興味</h3>
+  <h3>${displayName}さんの興味</h3>
 #{/else}
   <ul>
   #{list items:cloud.tagMap.entrySet(), as:'entry'}
     <li class="tag${entry.getValue()}">
-      <a href="/?username=${username}&q=${entry.getKey()}">${entry.getKey()}</a>
+      <a href="/${userId}?query=${entry.getKey()}">${entry.getKey()}</a>
     </li> 
   #{/list}
   </ul>
 </div>
 <div id="header">
-#{if username == "all"}
+#{if userId == "all"}
   <h3>みんなのブックマーク(${count})</h3>
 #{/if}
 #{else}
-  <h3>${username}さんのブックマーク(${count})</h3>
+  <h3>${displayName}さんのブックマーク(${count})</h3>
 #{/else}
   #{if count > 10}
     #{if page != 1}
         %{num = page - 1}%
-        <a href="@{Application.index(num, q)}">前へ</a>
+        <a href="@{Application.index(userId, num, query)}">前へ</a>
     #{/if}
     #{else}
         <p>前へ</p>
@@ -37,25 +37,25 @@
     
     #{if page * 10 < count}
         %{num = page + 1}%
-        <a href="@{Application.index(num, q)}">次へ</a>
+        <a href="@{Application.index(userId, num, query)}">次へ</a>
     #{/if}
     #{else}
         <p>次へ</p>
     #{/else}
   #{/if}
-  #{form @Application.search()}
-  <select name="username" id="users">
+  #{form @Application.search(userId, query)}
+  <select name="userId" id="users">
     <option value="all">すべてのユーザ</option>
     #{list users, as:'u'}
-      #{if username == u.name}
-        <option value="${u.name}" selected>${u.name}</option>
+      #{if userId == u.userId}
+        <option value="${u.userId}" selected>${u.displayName}</option>
       #{/if}
       #{else}
-        <option value="${u.name}">${u.name}</option>
+        <option value="${u.userId}">${u.displayName}</option>
       #{/else}
     #{/list}
   </select>
-    <input type="text" name="q" value="${q}"/>
+    <input type="text" name="query" value="${query}"/>
     <input type="submit" value="検索">
   #{/form}
 </div>
@@ -72,7 +72,7 @@
       </div>
       <div class="detail">
         <li>
-          <img src="/public/images/${item.bookmark.account.name}.jpg" width="48" height="48"/>
+          <img src="${item.bookmark.account.thumbnail}" width="48" height="48"/>
         </li>
         <li><a href="${item.bookmark.url}" target="_blank">${item.bookmark.title}</a></li>
         <li>${item.registerDate}</li>
@@ -100,8 +100,8 @@
 <script type="text/javascript">
   $(function() {
     $('#users').bind('change', function() {
-      var name = $('#users option:selected').val();
-      location.href = "/?username="+name;
+      var id = $('#users option:selected').val();
+      location.href = "/"+id;
     });
   });
 </script>

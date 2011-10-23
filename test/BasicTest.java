@@ -17,7 +17,7 @@ public class BasicTest extends UnitTest {
 	@Test
 	public void findTagcloud() {
 		Fixtures.loadModels("testdata.yml");
-		Tagcloud tagcloud = Tag.findByUsername("n-shinya");
+		Tagcloud tagcloud = Tag.findByUserId("n-shinya");
 		assertNotNull(tagcloud.tagMap);
 		assertEquals(tagcloud.tagMap.size(), 2);
 	}
