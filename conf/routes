@@ -13,6 +13,7 @@ POST    /search/{userId}                        Application.search
 GET     /clip                                   Application.clip
 POST    /register                               Application.register
 GET     /delete                                 Application.delete
+GET     /alldelete                              Application.alldelete
 GET     /{userId}/{page}                        Application.index
 GET     /{userId}                               Application.index
 GET     /                                       Application.index

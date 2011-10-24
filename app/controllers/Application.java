@@ -75,4 +75,17 @@ public class Application extends Controller {
 		bookmark.delete();
 		index(null, 1, null);
 	}
+	
+	public static void alldelete() {
+		for(Bookmark b : Bookmark.<Bookmark>findAll()) {
+			b.delete();
+		}
+		for(Tag t : Tag.<Tag>findAll()) {
+			t.delete();
+		}
+		for(Account a : Account.<Account>findAll()) {
+			a.delete();
+		}
+		index(null, 1, null);
+	}
 }

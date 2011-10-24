@@ -23,11 +23,12 @@ import auth.SalesForceOAuth2.Response;
 
 public class OAuthSecure extends Controller {
 
-	static SalesForceOAuth2 SALESFORCE = new SalesForceOAuth2(
+	public static SalesForceOAuth2 SALESFORCE = new SalesForceOAuth2(
 			"https://login.salesforce.com/services/oauth2/authorize", 
-			"https://na1.salesforce.com/services/oauth2/token", 
-			"3MVG9QDx8IX8nP5R5mp.ZlRAFH8lHakNMek4_IrP6b1f9eYTE2hZVcndpubcIMiprs.6aXeqYjX.CHEkZ9nOD", 
-			"6065091529342173268");
+			"https://na1.salesforce.com/services/oauth2/token",
+			Play.configuration.getProperty("salesforce.client.id"),
+			Play.configuration.getProperty("salesforce.client.secret")
+			);
 		
 	
 	@Before(unless={"login", "authenticate", "logout"})
@@ -69,12 +70,11 @@ public class OAuthSecure extends Controller {
 			String userId = jsonObj.get("user_id").getAsString();
 			String displayName = jsonObj.get("display_name").getAsString();
 			String thumbnail = jsonObj.get("photos").getAsJsonObject().get("thumbnail").getAsString();
-			System.out.println(idResponse.getString());
 			session.put("displayName", displayName);
 			authenticate(userId, thumbnail);
 		}
 		flash.keep("url");
-
+		
 		SALESFORCE.retrieveVerificationCode(authURL());
 	}
 
@@ -114,7 +114,7 @@ public class OAuthSecure extends Controller {
 		redirect(url);
 	}
 	
-	private static String authURL() {
+	public static String authURL() {
 		return play.mvc.Router.getFullUrl("OAuthSecure.login");
 	}
 
