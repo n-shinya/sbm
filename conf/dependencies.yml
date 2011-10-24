@@ -2,5 +2,4 @@
 
 require:
     - play
-    - play -> mongo 1.3
-    - play -> secure
+    - play -> mongo
