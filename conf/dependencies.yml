@@ -1,5 +1,4 @@
 # Application dependencies
 
 require:
-    - play
-    - play -> mongo
+    - play -> mongo 1.3
